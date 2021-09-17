@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChangeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('api.')->group(function () {
-    Route::post('calculate-change', 'ChangeController@calculate')->name('calculate-change');
+    Route::post('calculate-change', [ChangeController::class, 'calculate'])->name('calculate-change');
 });
 
