@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('api.')->group(function () {
+    Route::get('currencies', [ChangeController::class, 'getCurrencies'])->name('get-currencies');
     Route::post('calculate-change', [ChangeController::class, 'calculate'])->name('calculate-change');
 });
 

@@ -6,9 +6,9 @@ class TenderList
 {
   protected $list = [];
 
-  public function calculate($currency, $change) {
+  public function calculate(CurrencyDenomination $currency, $change) {
 
-    $denominations = CurrencyDenomination::find($currency)->denominations;
+    $denominations = $currency->denominations;
     $changeRemaining = $change;
 
     foreach ($denominations as $denomination) { 
@@ -35,6 +35,10 @@ class TenderList
 
   public function isEmpty() {
     return empty($this->list);
+  }
+
+  public function getList() {
+    return $this->list;
   }
 
   public function toJSON() {

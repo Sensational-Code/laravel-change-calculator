@@ -18,7 +18,7 @@ class CurrencyDenomination extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'currency';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that should be cast to native types.

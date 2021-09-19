@@ -3,10 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CurrencyDenomination;
 use App\Models\TenderList;
 
 class ChangeController extends Controller
 {
+		/**
+		 * Get the list of available currencies
+		 * @return array
+		 */
+		public function getCurrencies() {
+			$currencies = CurrencyDenomination::all();
+			return response($currencies);
+		}
+
+
 		/**
 		 * Calculate the change to return in tender
 		 *
@@ -33,9 +44,14 @@ class ChangeController extends Controller
 				return response('No change required!', 400);
 			}
 
+			$currency = CurrencyDenomination::where('code', $currency)->first();
+
 			$tenderList = new TenderList();
 			$tenderList->calculate($currency, $provided - $cost);
 
-			return $tenderList->toJSON();
+			return response()->JSON([
+				'symbol' => $currency->symbol,
+				'change' => $tenderList->getList()
+			]);
 		}
 }

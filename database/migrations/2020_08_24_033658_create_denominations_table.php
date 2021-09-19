@@ -15,7 +15,7 @@ class CreateDenominationsTable extends Migration
     {
         Schema::create('denominations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('currency')->unique();
+            $table->string('code')->unique();
             $table->string('symbol');
             $table->json('denominations');
             $table->timestamps();
